@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-md p-6 bg-white rounded-2xl shadow-lg">
+        <h2 class="text-2xl font-bold text-gray-700 mb-4">📌 To-Do List</h2>
+        <form method="POST" class="flex mb-4">
+            <input type="text" name="task" placeholder="Add a new task..." 
+                   class="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+            <button type="submit" 
+                    class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Add</button>
+        </form>
+        <ul class="space-y-2">
+            {% for todo in todos %}
+            <li class="flex justify-between items-center p-2 bg-gray-200 rounded-lg">
+                
+                {{todo.task}}
+                <form method="POST" action="/delete/{{todo.id}}">
+                    <button type="submit" class="ml-2 px-3 py-1 text-red-500 hover:text-red-700">✖</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
